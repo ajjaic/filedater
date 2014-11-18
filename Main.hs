@@ -19,7 +19,7 @@ main = do
    {->>= mapM_ renameWithModTime-}
 
 dateFormat :: String
-dateFormat = "%Y_%m_%d"
+dateFormat = "%Y_%m_%d_"
 
 getOnlyFiles :: [FilePath] -> IO [FilePath]
 getOnlyFiles = filterM doesFileExist
@@ -28,5 +28,5 @@ renameWithModTime :: FilePath -> IO ()
 renameWithModTime f = do
     modtime <- getModificationTime f
     let timeformat = formatTime defaultTimeLocale dateFormat modtime
-        newfilename = timeformat ++ "_" ++ (snd $ splitFileName f)
+        newfilename = timeformat ++ (snd $ splitFileName f)
     renameFile f newfilename
