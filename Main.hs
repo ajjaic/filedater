@@ -1,6 +1,5 @@
 import System.Environment (getArgs)
-import System.Directory (doesFileExist,
-                            getModificationTime,
+import System.Directory (doesFileExist, getModificationTime,
                             renameFile)
 import Control.Monad (filterM)
 import System.Locale (defaultTimeLocale)
@@ -13,10 +12,11 @@ main = do
     onlyfiles <- getOnlyFiles filepaths
     mapM_ renameWithModTime onlyfiles
 
-anomain :: IO ()
-anomain = getArgs
-   >>= (\filepaths -> getOnlyFiles filepaths)
-   >>= mapM_ renameWithModTime
+--Desugared Implementation
+{-anomain :: IO ()-}
+{-anomain = getArgs-}
+   {->>= (\filepaths -> getOnlyFiles filepaths)-}
+   {->>= mapM_ renameWithModTime-}
 
 dateFormat :: String
 dateFormat = "%Y_%m_%d"
